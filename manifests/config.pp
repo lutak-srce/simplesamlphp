@@ -1,5 +1,18 @@
 # Class: simplesamlphp::config
-class simplesamlphp::config {
+class simplesamlphp::config (
+  $authmemcookie         = $simplesamlphp::params::authmemcookie,
+  $package_ensure        = $simplesamlphp::params::package_ensure,
+  $alias                 = $simplesamlphp::params::alias,
+  $directory             = $simplesamlphp::params::directory,
+  $username              = $simplesamlphp::params::username,
+  $idp                   = $simplesamlphp::params::idp,
+  $proxyidp              = $simplesamlphp::params::proxyidp,
+  $fedlabidp             = $simplesamlphp::params::fedlabidp,
+  $authadminpassword     = $simplesamlphp::params::authadminpassword,
+  $secretsalt            = $simplesamlphp::params::secretsalt,
+  $technicalcontactname  = $simplesamlphp::params::technicalcontactname,
+  $technicalcontactemail = $simplesamlphp::params::technicalcontactemail,
+) inherits ::simplesamlphp::params {
 
   file { '/etc/simplesamlphp/authsources.php':
     ensure  => file,
