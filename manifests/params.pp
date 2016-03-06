@@ -58,7 +58,7 @@ class simplesamlphp::params {
 
       case $facts['os']['release']['major'] {
         '8'     : { $apache_reload = '/bin/systemctl  reload apache2' }
-        default : { $apache_reload = '/bin/systemctl  reload apache2' }
+        default : { $apache_reload = '/usr/sbin/service apache2 reload' }
       }
 
     }
