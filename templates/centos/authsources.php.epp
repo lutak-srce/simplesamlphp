@@ -1,0 +1,22 @@
+<?php
+
+$config = array(
+
+	'admin' => array(
+		'core:AdminPassword',
+	),
+
+	'default-sp' => array(
+		'saml:SP',
+		'entityID' => null,
+		'idp' => '<%= $simplesamlphp::idp %>',
+		'discoURL' => null
+        ),
+
+	'fedlab-sp' => array(
+                'saml:SP',
+                'entityID' => null,
+                'idp' => '<%= $simplesamlphp::fedlabidp %>',
+                'discoURL' => null
+        )
+);
