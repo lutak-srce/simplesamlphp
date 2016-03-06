@@ -1,0 +1,9 @@
+# This file is maintained by puppet. Do not edit manually.
+
+# simplesamlphp - Authentication and federation application supporting several protocols
+Alias /<%= $simplesamlphp::simplesamlalias %> /usr/share/simplesamlphp-aai/www
+
+<Directory /usr/share/simplesamlphp-aai/www/>
+   Order Deny,Allow
+   Allow from All
+</Directory>

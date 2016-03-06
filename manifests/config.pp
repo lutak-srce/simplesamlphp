@@ -1,116 +1,77 @@
 # Class: simplesamlphp::config
-class simplesamlphp::config (
-  $authmemcookie         = $simplesamlphp::params::authmemcookie,
-  $package_ensure        = $simplesamlphp::params::package_ensure,
-  $alias                 = $simplesamlphp::params::alias,
-  $directory             = $simplesamlphp::params::directory,
-  $username              = $simplesamlphp::params::username,
-  $idp                   = $simplesamlphp::params::idp,
-  $proxyidp              = $simplesamlphp::params::proxyidp,
-  $fedlabidp             = $simplesamlphp::params::fedlabidp,
-  $authadminpassword     = $simplesamlphp::params::authadminpassword,
-  $secretsalt            = $simplesamlphp::params::secretsalt,
-  $technicalcontactname  = $simplesamlphp::params::technicalcontactname,
-  $technicalcontactemail = $simplesamlphp::params::technicalcontactemail,
-) inherits ::simplesamlphp::params {
+class simplesamlphp::config {
 
-  file { '/etc/simplesamlphp/authsources.php':
+  file { $simplesamlphp::authsources_php_file:
     ensure  => file,
-    content => template('srce/simplesamlphp/authsources.php.erb'),
-    owner   => root,
-    group   => root,
-    mode    => '0644',
+    content => epp($simplesamlphp::authsources_php_epp),
+    owner   => $simplesamlphp::file_owner,
+    group   => $simplesamlphp::file_group,
+    mode    => $simplesamlphp::file_mode,
   }
 
-  case $::osfamily {
-    'RedHat' : {
-      file { '/usr/share/simplesamlphp/metadata/saml20-idp-remote.php':
-        ensure => file,
-        source => 'puppet:///modules/simplesamlphp/saml20-idp-remote.php',
-        owner  => root,
-        group  => root,
-        mode   => '0644',
-      }
-      file { '/etc/simplesamlphp/config.php':
-        ensure  => file,
-        content => template('srce/simplesamlphp/config.php.erb'),
-        owner   => root,
-        group   => root,
-        mode    => '0644',
-      }
-      file { '/etc/httpd/conf.d/simplesamlphp.conf':
-        ensure  => file,
-        content => template('srce/simplesamlphp/simplesamlphp.conf.erb'),
-        owner   => root,
-        group   => root,
-        mode    => '0644',
-      }
-      exec { 'service httpd reload':
-        subscribe   => File['/etc/httpd/conf.d/simplesamlphp.conf'],
-        refreshonly => true,
-      }
-    }
-    'Debian': {
-      file { '/etc/simplesamlphp/metadata/saml20-idp-remote.php':
-        ensure => file,
-        source => 'puppet:///modules/simplesamlphp/saml20-idp-remote.php',
-        owner  => root,
-        group  => root,
-        mode   => '0644',
-      }
-      file { '/etc/simplesamlphp/config.php':
-        ensure  => file,
-        content => template('srce/simplesamlphp/config_debian.php.erb'),
-        owner   => root,
-        group   => root,
-        mode    => '0644',
-      }
-      file { '/etc/apache2/conf.d/simplesamlphp-aai.conf':
-        ensure  => file,
-        content => template('srce/simplesamlphp/simplesamlphp.conf.erb'),
-        owner   => root,
-        group   => root,
-        mode    => '0644',
-      }
-      exec { 'service apache2 reload':
-        subscribe   => File['/etc/apache2/conf.d/simplesamlphp-aai.conf'],
-        refreshonly => true,
-      }
-    }
-    default: { }
+  file { $simplesamlphp::config_php_file:
+    ensure  => file,
+    content => epp($simplesamlphp::config_php_epp),
+    owner   => $simplesamlphp::file_owner,
+    group   => $simplesamlphp::file_group,
+    mode    => $simplesamlphp::file_mode,
+  }
+
+  file { $simplesamlphp::simplesamlphp_conf_file:
+    ensure  => file,
+    content => epp($simplesamlphp::simplesamlphp_conf_epp),
+    owner   => $simplesamlphp::file_owner,
+    group   => $simplesamlphp::file_group,
+    mode    => $simplesamlphp::file_mode,
+  }
+
+  file { $simplesamlphp::saml20_idp_remote_php_file:
+    ensure  => file,
+    source  => $simplesamlphp::saml20_idp_remote_php_src,
+    owner   => $simplesamlphp::file_owner,
+    group   => $simplesamlphp::file_group,
+    mode    => $simplesamlphp::file_mode,
+  }
+
+  exec { 'reload apache service':
+    subscribe   => File[$simplesamlphp::simplesamlphp_conf_file],
+    command     => $simplesamlphp::apache_reload,
+    refreshonly => true,
   }
 
   if $simplesamlphp::authmemcookie == true {
-    file { '/etc/simplesamlphp/authmemcookie.php':
+
+    file { $simplesamlphp::authmemcookie_php_file:
       ensure  => file,
-      content => template('srce/simplesamlphp/authmemcookie.php.erb'),
-      owner   => root,
-      group   => root,
-      mode    => '0644',
+      content => epp($simplesamlphp::authmemcookie_php_epp),
+      owner   => $simplesamlphp::file_owner,
+      group   => $simplesamlphp::file_group,
+      mode    => $simplesamlphp::file_mode,
     }
-    case $::osfamily {
+
+    case $facts['os']['family'] {
       'RedHat'  : {
-        file { '/etc/httpd/conf.d/authmemcookie.conf':
+        file { $simplesamlphp::authmemcookie_conf_file:
           ensure  => file,
-          content => template('srce/simplesamlphp/authmemcookie.conf.erb'),
-          owner   => root,
-          group   => root,
-          mode    => '0644',
+          content => epp($simplesamlphp::authmemcookie_conf_epp),
+          owner   => $simplesamlphp::file_owner,
+          group   => $simplesamlphp::file_group,
+          mode    => $simplesamlphp::file_mode,
         }
         exec { 'reload httpd service for authmemcookie':
-          subscribe   => File['/etc/httpd/conf.d/authmemcookie.conf'],
-          command     => 'service httpd reload',
+          subscribe   => File[$simplesamlphp::authmemcookie_conf_file],
+          command     => $simplesamlphp::apache_reload,
           refreshonly => true,
-        }
+          }
       }
       'Debian' : {
-        file { '/etc/apache2/mods-enabled/auth_memcookie.load':
+        file { $simplesamlphp::authmemcookie_conf_file:
           ensure => link,
-          target => '/etc/apache2/mods-available/auth_memcookie.load',
+          target => $simplesamlphp::authmemcookie_conf_epp,
         }
         exec { 'reload apache2 service for authmemcookie':
-          subscribe   => File['/etc/apache2/mods-enabled/auth_memcookie.load'],
-          command     => 'service apache2 reload',
+          subscribe   => File[$simplesamlphp::authmemcookie_conf_file],
+          command     => $simplesamlphp::apache_reload,
           refreshonly => true,
         }
       }
