@@ -17,7 +17,6 @@ class simplesamlphp::params {
   $technicalcontactemail = 'na@example.org'
   $file_owner            = 'root'
   $file_mode             = '0644'
-  $apache_reload         = '/sbin/service httpd reload'
 
   case $facts['os']['family'] {
     'RedHat' : {
@@ -35,6 +34,11 @@ class simplesamlphp::params {
       $authmemcookie_php_epp      = 'simplesamlphp/centos/authmemcookie.php.epp'
       $authmemcookie_conf_file    = '/etc/httpd/conf.d/authmemcookie.conf'
       $authmemcookie_conf_epp     = 'simplesamlphp/centos/authmemcookie.conf.epp'
+      
+      case $facts['os']['release']['major'] {
+        '7'     : { $apache_reload = '/usr/bin/systemctl reload httpd' }
+        default : { $apache_reload = '/sbin/service httpd reload' }
+      }
     }
     'Debian': {
       $support_pkgs               = ['memcached', 'libapache2-mod-auth-memcookie']
@@ -51,6 +55,12 @@ class simplesamlphp::params {
       $authmemcookie_php_epp      = 'simplesamlphp/debian/authmemcookie.php.epp'
       $authmemcookie_conf_file    = '/etc/apache2/mods-enabled/auth_memcookie.load'
       $authmemcookie_conf_epp     = '/etc/apache2/mods-available/auth_memcookie.load'
+
+      case $facts['os']['release']['major'] {
+        '8'     : { $apache_reload = '/bin/systemctl  reload apache2' }
+        default : { $apache_reload = '/bin/systemctl  reload apache2' }
+      }
+
     }
     default: { }
   } 
