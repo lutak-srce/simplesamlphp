@@ -48,7 +48,7 @@ class simplesamlphp (
   String         $apache_reload              = $simplesamlphp::params::apache_reload,
 ) inherits ::simplesamlphp::params {
 
-  if (($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['major'] =~ /[5-7]/)) or (($facts['os']['family'] == 'Debian') and ($facts['os']['release']['major'] =~ /[6-8]/)) {
+  if (($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['major'] =~ /[5-7]/)) or (($facts['os']['family'] == 'Debian') and ($facts['os']['release']['major'] == '8')) {
 
     class{'simplesamlphp::package': } ->
     class{'simplesamlphp::config' : } ->
