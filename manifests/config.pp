@@ -17,13 +17,13 @@ class simplesamlphp::config {
     mode    => $simplesamlphp::file_mode,
   }
 
-  file { $simplesamlphp::simplesamlphp_conf_file:
-    ensure  => file,
-    content => epp($simplesamlphp::simplesamlphp_conf_epp),
-    owner   => $simplesamlphp::file_owner,
-    group   => $simplesamlphp::file_group,
-    mode    => $simplesamlphp::file_mode,
-  }
+  #  file { $simplesamlphp::simplesamlphp_conf_file:
+  #  ensure  => file,
+  #  content => epp($simplesamlphp::simplesamlphp_conf_epp),
+  #  owner   => $simplesamlphp::file_owner,
+  #  group   => $simplesamlphp::file_group,
+  #  mode    => $simplesamlphp::file_mode,
+  #}
 
   file { $simplesamlphp::saml20_idp_remote_php_file:
     ensure  => file,
@@ -33,11 +33,11 @@ class simplesamlphp::config {
     mode    => $simplesamlphp::file_mode,
   }
 
-  exec { 'reload apache service':
-    subscribe   => File[$simplesamlphp::simplesamlphp_conf_file],
-    command     => $simplesamlphp::apache_reload,
-    refreshonly => true,
-  }
+  #  exec { 'reload apache service':
+  #   subscribe   => File[$simplesamlphp::simplesamlphp_conf_file],
+  # command     => $simplesamlphp::apache_reload,
+  # refreshonly => true,
+  #}
 
   if $simplesamlphp::authmemcookie == true {
 
@@ -65,11 +65,11 @@ class simplesamlphp::config {
           }
       }
       'Debian' : {
-        file { $simplesamlphp::authmemcookie_conf_file:
-          ensure => link,
-          target => $simplesamlphp::authmemcookie_conf_epp,
+                file { $simplesamlphp::authmemcookie_conf_file:
+         ensure => link,
+         target => $simplesamlphp::authmemcookie_conf_epp,
         }
-        exec { 'reload apache2 service for authmemcookie':
+                exec { 'reload apache2 service for authmemcookie':
           subscribe   => File[$simplesamlphp::authmemcookie_conf_file],
           command     => $simplesamlphp::apache_reload,
           refreshonly => true,
