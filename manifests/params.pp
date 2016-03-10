@@ -35,8 +35,6 @@ class simplesamlphp::params {
     'RedHat' : {
       $support_pkgs               = ['memcached', 'mod_auth_memcookie', 'php-pecl-memcache']
       $file_group                 = 'apache'
-      $simplesamlphp_conf_file    = '/etc/httpd/conf.d/simplesamlphp.conf'
-      $simplesamlphp_conf_epp     = 'simplesamlphp/centos/simplesamlphp.conf.epp'
       $authmemcookie_conf_file    = '/etc/httpd/conf.d/authmemcookie.conf'
       $authmemcookie_conf_epp     = 'simplesamlphp/centos/authmemcookie.conf.epp'
       
@@ -48,8 +46,6 @@ class simplesamlphp::params {
     'Debian': {
       $support_pkgs               = ['memcached', 'libmemcache0']
       $file_group                 = 'www-data'
-      $simplesamlphp_conf_file    = '/etc/apache2/conf.d/simplesamlphp-aai.conf'
-      $simplesamlphp_conf_epp     = 'simplesamlphp/debian/simplesamlphp.conf.epp'
       $authmemcookie_conf_file    = '/etc/apache2/mods-enabled/auth_memcookie.load'
       $authmemcookie_conf_epp     = '/etc/apache2/mods-available/auth_memcookie.load'
 

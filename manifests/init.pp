@@ -34,8 +34,6 @@ class simplesamlphp (
   String         $store_sql_prefix           = $simplesamlphp::params::store_sql_prefix,
   String         $authsources_php_file       = $simplesamlphp::params::authsources_php_file,
   String         $authsources_php_epp        = $simplesamlphp::params::authsources_php_epp,
-  String         $simplesamlphp_conf_file    = $simplesamlphp::params::simplesamlphp_conf_file,
-  String         $simplesamlphp_conf_epp     = $simplesamlphp::params::simplesamlphp_conf_epp,
   String         $config_php_file            = $simplesamlphp::params::config_php_file,
   String         $config_php_epp             = $simplesamlphp::params::config_php_epp,
   String         $saml20_idp_remote_php_file = $simplesamlphp::params::saml20_idp_remote_php_file,
