@@ -2,6 +2,8 @@
 class simplesamlphp::params {
 
   $authmemcookie              = false
+  $use_server_port            = false
+  $server_port                = '443'
   $package                    = 'simplesamlphp-aai'
   $package_ensure             = 'present'
   $pkgs_ensure                = 'present'
@@ -36,7 +38,7 @@ class simplesamlphp::params {
       $support_pkgs               = ['memcached', 'mod_auth_memcookie', 'php-pecl-memcache']
       $file_group                 = 'apache'
       $authmemcookie_conf_file    = '/etc/httpd/conf.d/authmemcookie.conf'
-      $authmemcookie_conf_epp     = 'simplesamlphp/centos/authmemcookie.conf.epp'
+      $authmemcookie_conf_epp     = 'simplesamlphp/authmemcookie.conf.epp'
       
       case $facts['os']['release']['major'] {
         '7'     : { $apache_reload = '/usr/bin/systemctl reload httpd' }

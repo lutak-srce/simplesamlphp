@@ -13,6 +13,8 @@
 
 class simplesamlphp (
   Boolean        $authmemcookie              = $simplesamlphp::params::authmemcookie,
+  Boolean        $use_server_port            = $simplesamlphp::params::use_server_port,
+  String         $server_port                = $simplesamlphp::params::server_port,
   String         $package_ensure             = $simplesamlphp::params::package_ensure,
   String         $pkgs_ensure                = $simplesamlphp::params::pkgs_ensure,
   String         $package                    = $simplesamlphp::params::package,

@@ -4,6 +4,11 @@
  * 
  */
 
+<% if $simplesamlphp::use_server_port == true { -%> 
+$_SERVER['SERVER_PORT'] = '<%= $simplesamlphp::server_port %>';
+<% } -%>
+
+
 $config = array(
 
     /**
@@ -539,7 +544,7 @@ $config = array(
      *
      * (This option replaces the old 'session.handler'-option.)
      */
-    'store.type'                    => '<%= $simplesamlphp::params::store_type %>',
+    'store.type'                    => '<%= $simplesamlphp::store_type %>',
 
 
     /*
@@ -548,18 +553,18 @@ $config = array(
      * See http://www.php.net/manual/en/pdo.drivers.php for the various
      * syntaxes.
      */
-    'store.sql.dsn'                 => '<%= $simplesamlphp::params::store_sql_dsn %>',
+    'store.sql.dsn'                 => '<%= $simplesamlphp::store_sql_dsn %>',
 
     /*
      * The username and password to use when connecting to the database.
      */
-    'store.sql.username' => <%= $simplesamlphp::params::store_sql_username %>,
-    'store.sql.password' => <%= $simplesamlphp::params::store_sql_password %>,
+    'store.sql.username' => <%= $simplesamlphp::store_sql_username %>,
+    'store.sql.password' => <%= $simplesamlphp::store_sql_password %>,
 
     /*
      * The prefix we should use on our tables.
      */
-    'store.sql.prefix' => '<%= $simplesamlphp::params::store_sql_prefix %>',
+    'store.sql.prefix' => '<%= $simplesamlphp::store_sql_prefix %>',
 
 
     /*
