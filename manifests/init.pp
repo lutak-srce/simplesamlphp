@@ -13,6 +13,8 @@
 
 class simplesamlphp (
   Boolean        $authmemcookie              = $simplesamlphp::params::authmemcookie,
+  Boolean        $use_server_port            = $simplesamlphp::params::use_server_port,
+  String         $server_port                = $simplesamlphp::params::server_port,
   String         $package_ensure             = $simplesamlphp::params::package_ensure,
   String         $pkgs_ensure                = $simplesamlphp::params::pkgs_ensure,
   String         $package                    = $simplesamlphp::params::package,
@@ -27,10 +29,13 @@ class simplesamlphp (
   String         $secretsalt                 = $simplesamlphp::params::secretsalt,
   String         $technicalcontactname       = $simplesamlphp::params::technicalcontactname,
   String         $technicalcontactemail      = $simplesamlphp::params::technicalcontactemail,
+  String         $store_type                 = $simplesamlphp::params::store_type,
+  String         $store_sql_dsn              = $simplesamlphp::params::store_sql_dsn,
+  String         $store_sql_username         = $simplesamlphp::params::store_sql_username,
+  String         $store_sql_password         = $simplesamlphp::params::store_sql_password,
+  String         $store_sql_prefix           = $simplesamlphp::params::store_sql_prefix,
   String         $authsources_php_file       = $simplesamlphp::params::authsources_php_file,
   String         $authsources_php_epp        = $simplesamlphp::params::authsources_php_epp,
-  String         $simplesamlphp_conf_file    = $simplesamlphp::params::simplesamlphp_conf_file,
-  String         $simplesamlphp_conf_epp     = $simplesamlphp::params::simplesamlphp_conf_epp,
   String         $config_php_file            = $simplesamlphp::params::config_php_file,
   String         $config_php_epp             = $simplesamlphp::params::config_php_epp,
   String         $saml20_idp_remote_php_file = $simplesamlphp::params::saml20_idp_remote_php_file,
@@ -45,7 +50,7 @@ class simplesamlphp (
   String         $apache_reload              = $simplesamlphp::params::apache_reload,
 ) inherits ::simplesamlphp::params {
 
-  if (($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['major'] =~ /[5-7]/)) or (($facts['os']['family'] == 'Debian') and ($facts['os']['release']['major'] =~ /[6-8]/)) {
+  if (($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['major'] =~ /[5-7]/)) or (($facts['os']['name'] == 'Debian') and ($facts['os']['distro']['codename'] == 'jessie')) {
 
     class{'simplesamlphp::package': } ->
     class{'simplesamlphp::config' : } ->
