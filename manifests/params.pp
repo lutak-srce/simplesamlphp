@@ -46,7 +46,7 @@ class simplesamlphp::params {
       }
     }
     'Debian': {
-      $support_pkgs               = ['memcached', 'libmemcache0']
+      $support_pkgs               = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
       $file_group                 = 'www-data'
       $authmemcookie_conf_file    = '/etc/apache2/mods-enabled/auth_memcookie.load'
       $authmemcookie_conf_epp     = '/etc/apache2/mods-available/auth_memcookie.load'
