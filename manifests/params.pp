@@ -33,14 +33,14 @@ class simplesamlphp::params {
   $authmemcookie_php_file     = '/usr/share/simplesamlphp-aai/config/authmemcookie.php'
   $authmemcookie_php_epp      = 'simplesamlphp/authmemcookie.php.epp'
 
-  case $facts['os']['family'] {
+  case $::osfamily {
     'RedHat' : {
       $support_pkgs               = ['memcached', 'mod_auth_memcookie', 'php-pecl-memcache']
       $file_group                 = 'apache'
       $authmemcookie_conf_file    = '/etc/httpd/conf.d/authmemcookie.conf'
       $authmemcookie_conf_epp     = 'simplesamlphp/authmemcookie.conf.epp'
-      
-      case $facts['os']['release']['major'] {
+
+      case $::operatingsystemmajrelease {
         '7'     : { $apache_reload = '/usr/bin/systemctl reload httpd' }
         default : { $apache_reload = '/sbin/service httpd reload' }
       }
@@ -51,13 +51,15 @@ class simplesamlphp::params {
       $authmemcookie_conf_file    = '/etc/apache2/mods-enabled/auth_memcookie.load'
       $authmemcookie_conf_epp     = '/etc/apache2/mods-available/auth_memcookie.load'
 
-      case $facts['os']['release']['major'] {
+      case $::operatingsystemmajrelease {
         '8'     : { $apache_reload = '/bin/systemctl reload apache2' }
         default : { $apache_reload = '/usr/sbin/service apache2 reload' }
       }
 
     }
-    default: { }
-  } 
+    default: {
+      fail('The simplesamlphp module is not supported on this OS.')
+    }
+  }
 
 }

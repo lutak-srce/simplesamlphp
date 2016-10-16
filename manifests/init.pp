@@ -50,13 +50,8 @@ class simplesamlphp (
   String         $apache_reload              = $simplesamlphp::params::apache_reload,
 ) inherits ::simplesamlphp::params {
 
-  if (($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['major'] =~ /[5-7]/)) or (($facts['os']['name'] == 'Debian') and ($facts['os']['distro']['codename'] == 'jessie')) {
-
     class{'simplesamlphp::package': } ->
     class{'simplesamlphp::config' : } ->
     Class['simplesamlphp']
-
-  }
-  else { notify{"Simplesamlphp module does not support this OS !!!": } }
 
 }

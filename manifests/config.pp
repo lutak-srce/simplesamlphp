@@ -18,11 +18,11 @@ class simplesamlphp::config {
   }
 
   file { $simplesamlphp::saml20_idp_remote_php_file:
-    ensure  => file,
-    source  => $simplesamlphp::saml20_idp_remote_php_src,
-    owner   => $simplesamlphp::file_owner,
-    group   => $simplesamlphp::file_group,
-    mode    => $simplesamlphp::file_mode,
+    ensure => file,
+    source => $simplesamlphp::saml20_idp_remote_php_src,
+    owner  => $simplesamlphp::file_owner,
+    group  => $simplesamlphp::file_group,
+    mode   => $simplesamlphp::file_mode,
   }
 
   if $simplesamlphp::authmemcookie == true {
@@ -35,7 +35,7 @@ class simplesamlphp::config {
       mode    => $simplesamlphp::file_mode,
     }
 
-    case $facts['os']['family'] {
+    case $::osfamily {
       'RedHat'  : {
         file { $simplesamlphp::authmemcookie_conf_file:
           ensure  => file,
@@ -52,8 +52,8 @@ class simplesamlphp::config {
       }
       'Debian' : {
         file { $simplesamlphp::authmemcookie_conf_file:
-         ensure => link,
-         target => $simplesamlphp::authmemcookie_conf_epp,
+          ensure => link,
+          target => $simplesamlphp::authmemcookie_conf_epp,
         }
         exec { 'reload apache2 service for authmemcookie':
           subscribe   => File[$simplesamlphp::authmemcookie_conf_file],
