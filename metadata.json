@@ -1,0 +1,15 @@
+{
+  "name": "srce-simplesamlphp",
+  "version": "0.0.3",
+  "author": "znikac@srce.hr",
+  "summary": "simpleSAMLphp pupet module",
+  "license": "Apache-2.0",
+  "source": "https://github.com/lutak-srce/simplesamlphp",
+  "project_page": "https://github.com/lutak-srce/simplesamlphp",
+  "issues_url": "https://github.com/lutak-srce/simplesamlphp/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
