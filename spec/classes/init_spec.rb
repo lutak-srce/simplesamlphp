@@ -8,7 +8,7 @@ describe 'simplesamlphp', :type => :class do
       }
     end
     it { is_expected.to contain_package("simplesamlphp-aai") }
-    it { should compile }
+    it { is_expected.to compile.with_all_deps }
   end
   context "on a RHEL 6 OS" do
     let :facts do
@@ -18,7 +18,7 @@ describe 'simplesamlphp', :type => :class do
       }
     end
     it { is_expected.to contain_package("simplesamlphp-aai") }
-    it { should compile }
+    it { is_expected.to compile.with_all_deps }
   end
   context "on a RHEL 7 OS" do
     let :facts do
@@ -28,7 +28,7 @@ describe 'simplesamlphp', :type => :class do
       }
     end
     it { is_expected.to contain_package("simplesamlphp-aai") }
-    it { should compile }
+    it { is_expected.to compile.with_all_deps }
   end
   context "on a Debian OS" do
     let :facts do
@@ -38,6 +38,6 @@ describe 'simplesamlphp', :type => :class do
       }
     end
     it { is_expected.to contain_package("simplesamlphp-aai") }
-    it { should compile }
+    it { is_expected.to compile.with_all_deps }
   end
 end
