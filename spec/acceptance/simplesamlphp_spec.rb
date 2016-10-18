@@ -10,17 +10,6 @@ describe 'simplesamlphp class' do
         package { 'php': }
         package { 'php-pdo': }
         package { 'php-xml': }
-        package { 'simplesamlphp':
-          provider => 'rpm',
-          ensure => present,
-          source => 'http://ftp.srce.hr/redhat/base/el7/x86_64/simplesamlphp-aai-1.13.2-2.el7.srce.noarch.rpm'
-        }
-        #yumrepo { "srce":
-        #  baseurl => "http://ftp.srce.hr/redhat/base/$operatingsystemrelease/$architecture/",
-        #  descr => "Srce Packages for Enterprise Linux",
-        #  enabled => 1,
-        #  gpgcheck => 0
-        #}
         class { 'simplesamlphp': }
       } else {
           class { 'simplesamlphp': 
