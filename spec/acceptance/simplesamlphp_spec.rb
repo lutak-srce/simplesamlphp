@@ -6,7 +6,7 @@ describe 'simplesamlphp class' do
     it 'should work idempotently with no errors' do
       pp = <<-EOS
       if $::osfamily == 'RedHat' {
-        package { 'simplesamlphp-aai':
+        package { 'simplesamlphp':
           provider => 'rpm',
           ensure => present,
           source => 'http://ftp.srce.hr/redhat/base/el7/x86_64/simplesamlphp-aai-1.13.2-2.el7.srce.noarch.rpm'
