@@ -8,7 +8,7 @@ end
 
 RSpec.configure do |c|
   module_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-  module_name = module_root.split('-').last
+  module_name = 'simplesamlphp'
 
   # Readable test descriptions
   c.formatter = :documentation
