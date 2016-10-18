@@ -19,7 +19,7 @@ RSpec.configure do |c|
       environmentpath = host.puppet['environmentpath']
       environmentpath = environmentpath.split(':').first if environmentpath
       destdir = "#{environmentpath}/production/modules"
-      on host, "git clone -b initial_spec_tests https://github.com/lutak-srce/simplesamlphp #{destdir}/simplesamlphp"
+      on host, "git clone -b initial_unit_testing https://github.com/lutak-srce/simplesamlphp #{destdir}/simplesamlphp"
     end
 
   end
