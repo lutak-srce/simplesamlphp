@@ -7,9 +7,9 @@ describe 'simplesamlphp class' do
       pp = <<-EOS
       if $::osfamily == 'RedHat' {
         apply_manifest(pp, 'package { "simplesamlphp-aai":
-                              provider => 'rpm',
+                              provider => "rpm",
                               ensure => present,
-                              source => 'http://ftp.srce.hr/redhat/base/el7/x86_64/simplesamlphp-aai-1.13.2-2.el7.srce.noarch.rpm'
+                              source => "http://ftp.srce.hr/redhat/base/el7/x86_64/simplesamlphp-aai-1.13.2-2.el7.srce.noarch.rpm"
                              }'
         )
         #yumrepo { "srce":
