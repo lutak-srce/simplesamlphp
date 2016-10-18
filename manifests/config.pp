@@ -1,6 +1,27 @@
 # Class: simplesamlphp::config
 class simplesamlphp::config {
 
+  file { $simplesamlphp::parent_dir:
+    ensure => directory,
+    owner  => $simplesamlphp::file_owner,
+    group  => $simplesamlphp::file_group,
+    mode   => $simplesamlphp::directory_mode,
+  }
+
+  file { $simplesamlphp::config_dir:
+    ensure => directory,
+    owner  => $simplesamlphp::file_owner,
+    group  => $simplesamlphp::file_group,
+    mode   => $simplesamlphp::directory_mode,
+  }
+
+  file { $simplesamlphp::metadata_dir:
+    ensure => directory,
+    owner  => $simplesamlphp::file_owner,
+    group  => $simplesamlphp::file_group,
+    mode   => $simplesamlphp::directory_mode,
+  }
+
   file { $simplesamlphp::authsources_php_file:
     ensure  => file,
     content => epp($simplesamlphp::authsources_php_epp),
