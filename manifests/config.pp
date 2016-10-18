@@ -1,5 +1,5 @@
 # Class: simplesamlphp::config
-class simplesamlphp::config inherits simplesamlphp {
+class simplesamlphp::config {
 
   file { $simplesamlphp::parent_dir:
     ensure => directory,
