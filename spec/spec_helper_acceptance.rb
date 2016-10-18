@@ -15,8 +15,6 @@ RSpec.configure do |c|
 
   # Configure all nodes in nodeset
   c.before :suite do
-    # Install module
-    puppet_module_install(:source => module_root, :module_name => 'simplesamlphp')
     hosts.each do |host|
       # Needed for simplesamlphp module to download simplesamlphp-aai packet
       environmentpath = host.puppet['environmentpath']
