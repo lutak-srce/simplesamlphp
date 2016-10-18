@@ -20,7 +20,7 @@ RSpec.configure do |c|
       environmentpath = host.puppet['environmentpath']
       environmentpath = environmentpath.split(':').first if environmentpath
 
-      destdir = "#{environmentpath}/production/modules"
+      destdir = "/etc/puppet/modules"
       on host, "git clone -b initial_spec_tests https://github.com/lutak-srce/simplesamlphp #{destdir}/simplesamlphp"
       on host, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
     end
