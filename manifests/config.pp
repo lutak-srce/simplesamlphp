@@ -2,10 +2,10 @@
 class simplesamlphp::config {
 
   file { $simplesamlphp::config_dir:
-    ensure  => directory,
-    owner   => $simplesamlphp::file_owner,
-    group   => $simplesamlphp::file_group,
-    mode    => $simplesamlphp::directory_mode,
+    ensure => directory,
+    owner  => $simplesamlphp::file_owner,
+    group  => $simplesamlphp::file_group,
+    mode   => $simplesamlphp::directory_mode,
   }
 
   file { $simplesamlphp::authsources_php_file:
