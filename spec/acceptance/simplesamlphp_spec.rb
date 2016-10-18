@@ -7,6 +7,7 @@ describe 'simplesamlphp class' do
       pp = <<-EOS
       if $::osfamily == 'RedHat' {
         package { 'webserver': }
+        package { 'php': }
         package { 'php-pdo': }
         package { 'php-xml': }
         package { 'simplesamlphp':
