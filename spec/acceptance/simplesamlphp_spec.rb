@@ -11,7 +11,6 @@ describe 'simplesamlphp class' do
           ensure => present,
           source => 'http://ftp.srce.hr/redhat/base/el7/x86_64/simplesamlphp-aai-1.13.2-2.el7.srce.noarch.rpm'
         }
-        )
         #yumrepo { "srce":
         #  baseurl => "http://ftp.srce.hr/redhat/base/$operatingsystemrelease/$architecture/",
         #  descr => "Srce Packages for Enterprise Linux",
