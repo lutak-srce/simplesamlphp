@@ -16,5 +16,11 @@ RSpec.configure do |c|
   c.before :suite do
     # Install module
     puppet_module_install(:source => module_root, :module_name => 'simplesamlphp')
+    hosts.each do |host|
+      # Needed for the consul module to download the binary per the modulefile
+      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
+    end
+
   end
 end
