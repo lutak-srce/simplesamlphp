@@ -27,7 +27,7 @@ class simplesamlphp::params {
   $directory_mode             = '0755'
   $authsources_php_file       = '/usr/share/simplesamlphp-aai/config/authsources.php'
   $authsources_php_epp        = 'simplesamlphp/authsources.php.epp'
-  $config_dir                 = '/usr/share/simplesamlphp-aai'
+  $config_dir                 = '/usr/share/simplesamlphp-aai/config'
   $config_php_file            = '/usr/share/simplesamlphp-aai/config/config.php'
   $config_php_epp             = 'simplesamlphp/config.php.epp'
   $saml20_idp_remote_php_file = '/usr/share/simplesamlphp-aai/metadata/saml20-idp-remote.php'
