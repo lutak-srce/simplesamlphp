@@ -36,6 +36,7 @@ class simplesamlphp (
   String         $store_sql_prefix           = $simplesamlphp::params::store_sql_prefix,
   String         $authsources_php_file       = $simplesamlphp::params::authsources_php_file,
   String         $authsources_php_epp        = $simplesamlphp::params::authsources_php_epp,
+  String         $config_dir                 = $simplesamlphp::params::config_dir,
   String         $config_php_file            = $simplesamlphp::params::config_php_file,
   String         $config_php_epp             = $simplesamlphp::params::config_php_epp,
   String         $saml20_idp_remote_php_file = $simplesamlphp::params::saml20_idp_remote_php_file,
@@ -47,6 +48,7 @@ class simplesamlphp (
   String         $file_owner                 = $simplesamlphp::params::file_owner,
   String         $file_group                 = $simplesamlphp::params::file_group,
   String         $file_mode                  = $simplesamlphp::params::file_mode,
+  String         $directory_mode             = $simplesamlphp::params::directory_mode,
   String         $apache_reload              = $simplesamlphp::params::apache_reload,
 ) inherits ::simplesamlphp::params {
 
