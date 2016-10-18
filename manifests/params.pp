@@ -46,7 +46,6 @@ class simplesamlphp::params {
       }
     }
     'Debian': {
-      include ::aptrepo::srce 
       $support_pkgs               = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
       $file_group                 = 'www-data'
       $authmemcookie_conf_file    = '/etc/apache2/mods-enabled/auth_memcookie.load'
