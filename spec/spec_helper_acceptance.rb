@@ -4,6 +4,7 @@ require 'beaker/puppet_install_helper'
 hosts.each do |host|
   # Install Puppet
   install_puppet
+  apply_manifest_on(host, 'package { "git": }')
 end
 
 RSpec.configure do |c|
