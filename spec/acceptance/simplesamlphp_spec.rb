@@ -6,6 +6,9 @@ describe 'simplesamlphp class' do
     it 'should work idempotently with no errors' do
       pp = <<-EOS
       if $::osfamily == 'RedHat' {
+        package { 'webserver': }
+        package { 'php-pdo': }
+        package { 'php-xml': }
         package { 'simplesamlphp':
           provider => 'rpm',
           ensure => present,
