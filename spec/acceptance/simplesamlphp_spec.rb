@@ -5,8 +5,18 @@ describe 'simplesamlphp class' do
   context 'default parameters' do
     it 'should work idempotently with no errors' do
       pp = <<-EOS
-        class { 'simplesamlphp': 
-          package=> 'simplesamlphp'
+      if $::osfamily == 'RedHat' {
+        class { 'simplesamlphp': }
+        yumrepo { "srce":
+          baseurl => "http://ftp.srce.hr/redhat/base/$operatingsystemrelease/$basearch/",
+          descr => "Srce Packages for Enterprise Linux",
+          enabled => 1,
+          gpgcheck => 0
+        }
+      } else {
+          class { 'simplesamlphp': 
+            package=> 'simplesamlphp'
+          }
         }
       EOS
 
