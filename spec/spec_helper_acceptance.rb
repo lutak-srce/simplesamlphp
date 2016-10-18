@@ -3,7 +3,7 @@ require 'beaker/puppet_install_helper'
 
 hosts.each do |host|
   # Install Puppet
-  install_puppet
+  run_puppet_install_helper
   apply_manifest_on(host, 'package { "git": }')
 end
 
@@ -20,7 +20,7 @@ RSpec.configure do |c|
       environmentpath = host.puppet['environmentpath']
       environmentpath = environmentpath.split(':').first if environmentpath
 
-      destdir = "/etc/puppet/modules"
+      destdir = "#{environmentpath}/production/modules"
       on host, "git clone -b initial_spec_tests https://github.com/lutak-srce/simplesamlphp #{destdir}/simplesamlphp"
       on host, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
     end
