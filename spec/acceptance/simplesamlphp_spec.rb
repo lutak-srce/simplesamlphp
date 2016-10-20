@@ -16,6 +16,10 @@ describe 'simplesamlphp class' do
             include_src => false,
             before      => Class['simplesamlphp'],
           }
+          exec { "apt-update":
+            command => "/usr/bin/apt-get update"
+          }
+          Exec["apt-update"] -> Package <| |>
         } elsif $::osfamily == 'RedHat' {
          yumrepo { 'srce-repo':
           baseurl  => "http://ftp.srce.hr/redhat/base/el7/$architecture/",
@@ -24,9 +28,7 @@ describe 'simplesamlphp class' do
             before   => Class['simplesamlphp'],
           }
         }
-        class { 'simplesamlphp': 
-          package=> 'simplesamlphp-aai'
-        }
+        class { 'simplesamlphp': }
       EOS
 
       # Run it twice and test for idempotency
