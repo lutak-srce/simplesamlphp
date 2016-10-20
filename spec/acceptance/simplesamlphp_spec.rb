@@ -8,12 +8,16 @@ describe 'simplesamlphp class' do
         if $::osfamily == 'Debian' {
           class { 'apt': }
           apt::source { 'srce-repo':
-            key         => 'E2FFF7957AEC9D5118B95BE2FECB42104089CBA3',
-            key_server  => 'pks.aaiedu.hr',
+            key         => {
+              'id'     => 'E2FFF7957AEC9D5118B95BE2FECB42104089CBA3',
+              'server' => 'pks.aaiedu.hr',
+	    },
             location    => 'http://ftp.srce.hr/srce-debian/',
             release     => "srce-${::lsbdistcodename}",
             repos       => 'main',
-            include_src => false,
+            include     => {
+              'src' => false,
+	    },
             before      => Class['simplesamlphp'],
           }
           exec { "apt-update":
