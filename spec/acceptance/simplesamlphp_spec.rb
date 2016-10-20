@@ -18,7 +18,7 @@ describe 'simplesamlphp class' do
           }
         } elsif $::osfamily == 'RedHat' {
          yumrepo { 'srce-repo':
-          baseurl  => "http://ftp.srce.hr/redhat/base/$operatingsystemrelease/$architecture/",
+          baseurl  => "http://ftp.srce.hr/redhat/base/el7/$architecture/",
             enabled  => 1,
             gpgcheck => 0,
             before   => Class['simplesamlphp'],
