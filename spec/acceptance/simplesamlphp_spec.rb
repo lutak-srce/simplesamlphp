@@ -5,11 +5,8 @@ describe 'simplesamlphp class' do
   context 'default parameters' do
     it 'should work idempotently with no errors' do
       pp = <<-EOS
-      if $::osfamily == 'RedHat' {
-      } else {
-          class { 'simplesamlphp': 
-            package=> 'simplesamlphp'
-          }
+        class { 'simplesamlphp': 
+          package=> 'simplesamlphp-aai'
         }
       EOS
 
