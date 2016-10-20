@@ -20,10 +20,7 @@ describe 'simplesamlphp class' do
 	    },
             before      => Class['simplesamlphp'],
           }
-          exec { "apt-update":
-            command => "/usr/bin/apt-get update"
-          }
-          Exec["apt-update"] -> Package <| |>
+          Exec["apt_update"] -> Package <| |>
         } elsif $::osfamily == 'RedHat' {
          yumrepo { 'srce-repo':
           baseurl  => "http://ftp.srce.hr/redhat/base/el7/$architecture/",
