@@ -21,6 +21,8 @@ describe 'simplesamlphp class' do
 	    },
             before      => Class['simplesamlphp'],
           }
+	  # execute apt-get update before installation
+	  Exec["apt_update"] -> Package <| |>
         } elsif $::osfamily == 'RedHat' {
          yumrepo { 'srce-repo':
           baseurl  => "http://ftp.srce.hr/redhat/base/el${::operatingsystemmajrelease}/$architecture/",
