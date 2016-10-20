@@ -16,7 +16,7 @@ RSpec.configure do |c|
   # Configure all nodes in nodeset
   c.before :suite do
     hosts.each do |host|
-      puppet('module','install','puppetlabs/apt')
+      puppet('module','install','puppetlabs-apt')
       environmentpath = host.puppet['environmentpath']
       environmentpath = environmentpath.split(':').first if environmentpath
       destdir = "#{environmentpath}/production/modules"
