@@ -5,6 +5,7 @@ describe 'simplesamlphp class' do
   context 'default parameters' do
     it 'should work idempotently with no errors' do
       pp = <<-EOS
+        # SRCE repos for installation of simplesamlphp-aai package
         if $::osfamily == 'Debian' {
           class { 'apt': }
           apt::source { 'srce-repo':
@@ -20,10 +21,9 @@ describe 'simplesamlphp class' do
 	    },
             before      => Class['simplesamlphp'],
           }
-          Exec["apt_update"] -> Package <| |>
         } elsif $::osfamily == 'RedHat' {
          yumrepo { 'srce-repo':
-          baseurl  => "http://ftp.srce.hr/redhat/base/el7/$architecture/",
+          baseurl  => "http://ftp.srce.hr/redhat/base/el${::operatingsystemmajrelease}/$architecture/",
             enabled  => 1,
             gpgcheck => 0,
             before   => Class['simplesamlphp'],
