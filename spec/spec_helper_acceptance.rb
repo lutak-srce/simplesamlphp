@@ -16,7 +16,9 @@ RSpec.configure do |c|
   # Configure all nodes in nodeset
   c.before :suite do
     hosts.each do |host|
-      puppet('module','install','puppetlabs-apt')
+      if fact('osfamily') == 'Debian'
+        on host, puppet('module','install','puppetlabs-apt')
+      end
       environmentpath = host.puppet['environmentpath']
       environmentpath = environmentpath.split(':').first if environmentpath
       destdir = "#{environmentpath}/production/modules"
