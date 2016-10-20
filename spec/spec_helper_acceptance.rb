@@ -8,7 +8,7 @@ hosts.each do |host|
 end
 
 RSpec.configure do |c|
-  # module_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+  module_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
   # Readable test descriptions
   c.formatter = :documentation
@@ -17,12 +17,14 @@ RSpec.configure do |c|
   c.before :suite do
     hosts.each do |host|
       if fact('osfamily') == 'Debian'
+        # needed for repo setup for installation of simplesamlphp-aai package
         on host, puppet('module','install','puppetlabs-apt')
       end
-      environmentpath = host.puppet['environmentpath']
-      environmentpath = environmentpath.split(':').first if environmentpath
-      destdir = "#{environmentpath}/production/modules"
-      on host, "git clone -b initial_unit_testing https://github.com/lutak-srce/simplesamlphp #{destdir}/simplesamlphp"
+      copy_module_to(host, :source => module_root, :module_name => 'simplesamlphp')
+      #environmentpath = host.puppet['environmentpath']
+      #environmentpath = environmentpath.split(':').first if environmentpath
+      #destdir = "#{environmentpath}/production/modules"
+      #on host, "git clone -b initial_unit_testing https://github.com/lutak-srce/simplesamlphp #{destdir}/simplesamlphp"
     end
 
   end
