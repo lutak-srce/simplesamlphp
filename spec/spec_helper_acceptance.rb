@@ -2,9 +2,8 @@ require 'beaker-rspec/spec_helper'
 require 'beaker/puppet_install_helper'
 
 hosts.each do |host|
-  # Install Puppet & git
+  # Install Puppet
   run_puppet_install_helper
-  apply_manifest_on(host, 'package { "git": }')
 end
 
 RSpec.configure do |c|
@@ -21,10 +20,6 @@ RSpec.configure do |c|
         on host, puppet('module','install','puppetlabs-apt')
       end
       copy_module_to(host, :source => module_root, :module_name => 'simplesamlphp')
-      #environmentpath = host.puppet['environmentpath']
-      #environmentpath = environmentpath.split(':').first if environmentpath
-      #destdir = "#{environmentpath}/production/modules"
-      #on host, "git clone -b initial_unit_testing https://github.com/lutak-srce/simplesamlphp #{destdir}/simplesamlphp"
     end
 
   end
