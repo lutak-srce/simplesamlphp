@@ -4,7 +4,7 @@
 #
 # Parameters: none
 #
-# Actions: Manages simplesamlphp, optionally with memcookie
+# Actions: Manages simplesamlphp, optionally memcookie apache module
 #
 # Requires: srce repo
 #
