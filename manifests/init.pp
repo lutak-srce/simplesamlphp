@@ -29,6 +29,7 @@ class simplesamlphp (
   String         $secretsalt                 = $simplesamlphp::params::secretsalt,
   String         $technicalcontactname       = $simplesamlphp::params::technicalcontactname,
   String         $technicalcontactemail      = $simplesamlphp::params::technicalcontactemail,
+  String         $enable_http_post           = $simplesamlphp::params::enable_http_post,
   String         $store_type                 = $simplesamlphp::params::store_type,
   String         $store_sql_dsn              = $simplesamlphp::params::store_sql_dsn,
   String         $store_sql_username         = $simplesamlphp::params::store_sql_username,
