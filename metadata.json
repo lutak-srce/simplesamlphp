@@ -1,6 +1,6 @@
 {
   "name": "srce-simplesamlphp",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "author": "znikac@srce.hr",
   "summary": "simpleSAMLphp pupet module",
   "license": "Apache-2.0",
