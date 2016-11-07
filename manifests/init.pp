@@ -29,6 +29,7 @@ class simplesamlphp (
   String         $secretsalt                 = $simplesamlphp::params::secretsalt,
   String         $technicalcontactname       = $simplesamlphp::params::technicalcontactname,
   String         $technicalcontactemail      = $simplesamlphp::params::technicalcontactemail,
+  Boolean        $enable_http_post           = $simplesamlphp::params::enable_http_post,
   String         $store_type                 = $simplesamlphp::params::store_type,
   String         $store_sql_dsn              = $simplesamlphp::params::store_sql_dsn,
   String         $store_sql_username         = $simplesamlphp::params::store_sql_username,
@@ -36,9 +37,6 @@ class simplesamlphp (
   String         $store_sql_prefix           = $simplesamlphp::params::store_sql_prefix,
   String         $authsources_php_file       = $simplesamlphp::params::authsources_php_file,
   String         $authsources_php_epp        = $simplesamlphp::params::authsources_php_epp,
-  String         $parent_dir                 = $simplesamlphp::params::parent_dir,
-  String         $config_dir                 = $simplesamlphp::params::config_dir,
-  String         $metadata_dir               = $simplesamlphp::params::metadata_dir,
   String         $config_php_file            = $simplesamlphp::params::config_php_file,
   String         $config_php_epp             = $simplesamlphp::params::config_php_epp,
   String         $saml20_idp_remote_php_file = $simplesamlphp::params::saml20_idp_remote_php_file,
@@ -50,7 +48,6 @@ class simplesamlphp (
   String         $file_owner                 = $simplesamlphp::params::file_owner,
   String         $file_group                 = $simplesamlphp::params::file_group,
   String         $file_mode                  = $simplesamlphp::params::file_mode,
-  String         $directory_mode             = $simplesamlphp::params::directory_mode,
   String         $apache_reload              = $simplesamlphp::params::apache_reload,
 ) inherits ::simplesamlphp::params {
 
