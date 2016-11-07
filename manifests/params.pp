@@ -17,6 +17,7 @@ class simplesamlphp::params {
   $secretsalt                 = 'x1020wd03d24webk02pujzbenkbmeffg'
   $technicalcontactname       = 'Administrator'
   $technicalcontactemail      = 'na@example.org'
+  $enable_http_post           = 'false'
   $store_type                 = 'phpsession'
   $store_sql_dsn              = 'sqlite:/path/to/sqlitedatabase.sq3'
   $store_sql_username         = 'null'
