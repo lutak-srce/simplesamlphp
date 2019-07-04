@@ -49,6 +49,7 @@ class simplesamlphp (
   String         $file_group                 = $simplesamlphp::params::file_group,
   String         $file_mode                  = $simplesamlphp::params::file_mode,
   String         $apache_reload              = $simplesamlphp::params::apache_reload,
+  Optional[String] $authproccustom             = $simplesamlphp::params::authproccustom,
 ) inherits ::simplesamlphp::params {
 
     class{'simplesamlphp::package': } ->
