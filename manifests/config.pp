@@ -1,12 +1,23 @@
 # Class: simplesamlphp::config
 class simplesamlphp::config {
 
-  file { $simplesamlphp::authsources_php_file:
-    ensure  => file,
-    content => epp($simplesamlphp::authsources_php_epp),
-    owner   => $simplesamlphp::file_owner,
-    group   => $simplesamlphp::file_group,
-    mode    => $simplesamlphp::file_mode,
+  if $simplesamlphp::authsources_php_custom_file == true {
+    file { $simplesamlphp::authsources_php_file:
+      ensure  => file,
+      source => $simplesamlphp::authsources_php_custom_src,
+      owner   => $simplesamlphp::file_owner,
+      group   => $simplesamlphp::file_group,
+      mode    => $simplesamlphp::file_mode,
+    }
+  }
+  else {
+    file { $simplesamlphp::authsources_php_file:
+      ensure  => file,
+      content => epp($simplesamlphp::authsources_php_epp),
+      owner   => $simplesamlphp::file_owner,
+      group   => $simplesamlphp::file_group,
+      mode    => $simplesamlphp::file_mode,
+    }
   }
 
   file { $simplesamlphp::config_php_file:
