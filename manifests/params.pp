@@ -35,6 +35,7 @@ class simplesamlphp::params {
   $saml20_idp_remote_php_src   = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
   $authmemcookie_php_file      = '/usr/share/simplesamlphp-aai/config/authmemcookie.php'
   $authmemcookie_php_epp       = 'simplesamlphp/authmemcookie.php.epp'
+  $authproccustom              = undef
 
   case $::osfamily {
     'RedHat' : {
