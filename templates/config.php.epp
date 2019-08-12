@@ -472,7 +472,12 @@ $config = array(
      * Authentication processing filters that will be executed for all SPs
      * Both Shibboleth and SAML 2.0
      */
-    'authproc.sp' => array(
+    'authproc.sp' => array(<% if $simplesamlphp::authproccustom { %>
+       10 => array(
+               'class' => 'core:PHP',
+               'code'  => '<%= $simplesamlphp::authproccustom -%>
+                          '
+                  ),//$eduPersonTargetedID = $hrEduPersonUniqueID.":".$hrEduPersonOIB; <% } %>
 	40 => array(
 		'class' => 'core:StatisticsWithAttribute',
 		'attributename' => 'hrEduPersonUniqueID',
