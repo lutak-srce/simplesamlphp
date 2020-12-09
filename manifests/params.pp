@@ -12,7 +12,7 @@ class simplesamlphp::params {
   $username                    = 'hrEduPersonUniqueID'
   $idp                         = 'https://login.aaiedu.hr/sso/saml2/idp/metadata.php'
   $proxyidp                    = 'https://login.aaiedu.hr/proxy/saml2/idp/metadata.php'
-  $fedlabidp                   = 'fed-lab.aaiedu.hr'
+  $fedlabproxyidp              = 'https://fed-lab.aaiedu.hr/proxy/saml2/idp/metadata.php'
   $authadminpassword           = 'PromijeniMe'
   $secretsalt                  = 'x1020wd03d24webk02pujzbenkbmeffg'
   $technicalcontactname        = 'Administrator'
@@ -26,13 +26,10 @@ class simplesamlphp::params {
   $file_owner                  = 'root'
   $file_mode                   = '0644'
   $authsources_php_file        = '/usr/share/simplesamlphp-aai/config/authsources.php'
-  $authsources_php_epp         = 'simplesamlphp/authsources.php.epp'
   $authsources_php_custom_file = false
   $authsources_php_custom_src  = 'puppet:///modules/simplesamlphp/authsources.php'
   $config_php_file             = '/usr/share/simplesamlphp-aai/config/config.php'
-  $config_php_epp              = 'simplesamlphp/config.php.epp'
   $saml20_idp_remote_php_file  = '/usr/share/simplesamlphp-aai/metadata/saml20-idp-remote.php'
-  $saml20_idp_remote_php_src   = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
   $authmemcookie_php_file      = '/usr/share/simplesamlphp-aai/config/authmemcookie.php'
   $authmemcookie_php_epp       = 'simplesamlphp/authmemcookie.php.epp'
   $authproccustom              = undef
