@@ -1,13 +1,15 @@
 # Class: simplesamlphp::config
-class simplesamlphp::config {
+class simplesamlphp::config (
+  $saml20_idp_remote_php_src = $simplesamlphp::saml20_idp_remote_php_src,
+){
 
   if $simplesamlphp::authsources_php_custom_file == true {
     file { $simplesamlphp::authsources_php_file:
-      ensure  => file,
+      ensure => file,
       source => $simplesamlphp::authsources_php_custom_src,
-      owner   => $simplesamlphp::file_owner,
-      group   => $simplesamlphp::file_group,
-      mode    => $simplesamlphp::file_mode,
+      owner  => $simplesamlphp::file_owner,
+      group  => $simplesamlphp::file_group,
+      mode   => $simplesamlphp::file_mode,
     }
   }
   else {
@@ -30,7 +32,7 @@ class simplesamlphp::config {
 
   file { $simplesamlphp::saml20_idp_remote_php_file:
     ensure => file,
-    source => $simplesamlphp::saml20_idp_remote_php_src,
+    source => $saml20_idp_remote_php_src,
     owner  => $simplesamlphp::file_owner,
     group  => $simplesamlphp::file_group,
     mode   => $simplesamlphp::file_mode,
