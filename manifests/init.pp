@@ -50,8 +50,8 @@ class simplesamlphp (
   Optional[String] $authproccustom              = $simplesamlphp::params::authproccustom,
 ) inherits ::simplesamlphp::params {
 
-  case $package_ensure {
-    /^1\.18\.8\+srce10u.*$/: {
+  case $::lsbdistcodename {
+    'buster': {
       $authsources_php_epp       = 'simplesamlphp/authsources.php_1-18-8.epp'
       $config_php_epp            = 'simplesamlphp/config.php_1-18-8.epp'
       $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote_1-18-8.php'
