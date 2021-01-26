@@ -36,31 +36,58 @@ class simplesamlphp::params {
 
   case $::osfamily {
     'RedHat' : {
-      $support_pkgs               = ['memcached', 'mod_auth_memcookie', 'php-pecl-memcache']
-      $file_group                 = 'apache'
-      $authmemcookie_conf_file    = '/etc/httpd/conf.d/authmemcookie.conf'
-      $authmemcookie_conf_epp     = 'simplesamlphp/authmemcookie.conf.epp'
+      $support_pkgs              = ['memcached', 'mod_auth_memcookie', 'php-pecl-memcache']
+      $file_group                = 'apache'
+      $authmemcookie_conf_file   = '/etc/httpd/conf.d/authmemcookie.conf'
+      $authmemcookie_conf_epp    = 'simplesamlphp/authmemcookie.conf.epp'
+      $session_cookie_secure     = false
+      $authsources_php_epp       = 'simplesamlphp/authsources.php.epp'
+      $config_php_epp            = 'simplesamlphp/config.php.epp'
+      $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
+      $fedlabidp                 = 'fed-lab.aaiedu.hr'
 
       case $::operatingsystemmajrelease {
         '7'     : { $apache_reload = '/usr/bin/systemctl reload httpd' }
         default : { $apache_reload = '/sbin/service httpd reload' }
       }
     }
+
     'Debian': {
-      $support_pkgs               = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
-      $file_group                 = 'www-data'
-      $authmemcookie_conf_file    = '/etc/apache2/mods-enabled/auth_memcookie.load'
-      $authmemcookie_conf_epp     = '/etc/apache2/mods-available/auth_memcookie.load'
+      $support_pkgs            = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
+      $file_group              = 'www-data'
+      $authmemcookie_conf_file = '/etc/apache2/mods-enabled/auth_memcookie.load'
+      $authmemcookie_conf_epp  = '/etc/apache2/mods-available/auth_memcookie.load'
 
       case $::operatingsystemmajrelease {
-        '8'     : { $apache_reload = '/bin/systemctl reload apache2' }
-        default : { $apache_reload = '/usr/sbin/service apache2 reload' }
+        '10' : {
+          $apache_reload             = '/usr/sbin/service apache2 reload'
+          $authsources_php_epp       = 'simplesamlphp/authsources.php_1-18-8.epp'
+          $config_php_epp            = 'simplesamlphp/config.php_1-18-8.epp'
+          $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote_1-18-8.php'
+          $fedlabidp                 = 'https://fed-lab.aaiedu.hr/sso/saml2/idp/metadata.php'
+          $session_cookie_secure     = true
+        }
+        '8' : {
+          $apache_reload             = '/bin/systemctl reload apache2'
+          $authsources_php_epp       = 'simplesamlphp/authsources.php.epp'
+          $config_php_epp            = 'simplesamlphp/config.php.epp'
+          $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
+          $fedlabidp                 = 'fed-lab.aaiedu.hr'
+          $session_cookie_secure     = false
+        }
+        default : {
+          $apache_reload             = '/usr/sbin/service apache2 reload'
+          $authsources_php_epp       = 'simplesamlphp/authsources.php.epp'
+          $config_php_epp            = 'simplesamlphp/config.php.epp'
+          $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
+          $fedlabidp                 = 'fed-lab.aaiedu.hr'
+          $session_cookie_secure     = false
+        }
       }
-
     }
+
     default: {
       fail('The simplesamlphp module is not supported on this OS.')
     }
   }
-
 }
