@@ -48,24 +48,8 @@ class simplesamlphp (
   String           $file_mode                   = $simplesamlphp::params::file_mode,
   String           $apache_reload               = $simplesamlphp::params::apache_reload,
   Optional[String] $authproccustom              = $simplesamlphp::params::authproccustom,
+  Boolean          $session_cookie_secure       = $simplesamlphp::params::session_cookie_secure,
 ) inherits ::simplesamlphp::params {
-
-  case $::lsbdistcodename {
-    'buster': {
-      $authsources_php_epp       = 'simplesamlphp/authsources.php_1-18-8.epp'
-      $config_php_epp            = 'simplesamlphp/config.php_1-18-8.epp'
-      $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote_1-18-8.php'
-      $fedlabidp                 = 'https://fed-lab.aaiedu.hr/sso/saml2/idp/metadata.php'
-      $session_cookie_secure     = true
-    }
-    default: {
-      $authsources_php_epp       = 'simplesamlphp/authsources.php.epp'
-      $config_php_epp            = 'simplesamlphp/config.php.epp'
-      $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
-      $fedlabidp                 = 'fed-lab.aaiedu.hr'
-      $session_cookie_secure     = false
-      }
-  }
 
     class{'simplesamlphp::package': }
     -> class{'simplesamlphp::config' : }
