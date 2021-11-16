@@ -64,14 +64,16 @@ class simplesamlphp::config (
           }
       }
       'Debian' : {
-        file { $simplesamlphp::authmemcookie_conf_file:
-          ensure => link,
-          target => $simplesamlphp::authmemcookie_conf_epp,
-        }
-        exec { 'reload apache2 service for authmemcookie':
-          subscribe   => File[$simplesamlphp::authmemcookie_conf_file],
-          command     => $simplesamlphp::apache_reload,
-          refreshonly => true,
+        if versioncmp($facts['operatingsystemmajrelease'], '10') <= 0 {
+          file { $simplesamlphp::authmemcookie_conf_file:
+            ensure => link,
+            target => $simplesamlphp::authmemcookie_conf_epp,
+          }
+          exec { 'reload apache2 service for authmemcookie':
+            subscribe   => File[$simplesamlphp::authmemcookie_conf_file],
+            command     => $simplesamlphp::apache_reload,
+            refreshonly => true,
+          }
         }
       }
       default: { }

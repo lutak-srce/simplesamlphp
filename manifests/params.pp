@@ -53,7 +53,6 @@ class simplesamlphp::params {
     }
 
     'Debian': {
-      $support_pkgs            = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
       $file_group              = 'www-data'
       $authmemcookie_conf_file = '/etc/apache2/mods-enabled/auth_memcookie.load'
       $authmemcookie_conf_epp  = '/etc/apache2/mods-available/auth_memcookie.load'
@@ -66,6 +65,16 @@ class simplesamlphp::params {
           $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote_1-18-8.php'
           $fedlabidp                 = 'https://fed-lab.aaiedu.hr/sso/saml2/idp/metadata.php'
           $session_cookie_secure     = true
+          $support_pkgs              = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
+        }
+        '9' : {
+          $apache_reload             = '/usr/sbin/service apache2 reload'
+          $authsources_php_epp       = 'simplesamlphp/authsources.php.epp'
+          $config_php_epp            = 'simplesamlphp/config.php.epp'
+          $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
+          $fedlabidp                 = 'fed-lab.aaiedu.hr'
+          $session_cookie_secure     = false
+          $support_pkgs              = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
         }
         '8' : {
           $apache_reload             = '/bin/systemctl reload apache2'
@@ -74,6 +83,7 @@ class simplesamlphp::params {
           $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
           $fedlabidp                 = 'fed-lab.aaiedu.hr'
           $session_cookie_secure     = false
+          $support_pkgs              = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
         }
         default : {
           $apache_reload             = '/usr/sbin/service apache2 reload'
@@ -82,6 +92,7 @@ class simplesamlphp::params {
           $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
           $fedlabidp                 = 'fed-lab.aaiedu.hr'
           $session_cookie_secure     = false
+          $support_pkgs              = ['memcached']
         }
       }
     }
