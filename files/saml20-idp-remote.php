@@ -1,5 +1,6 @@
 <?php
 
+
 $metadata['https://login.aaiedu.hr/sso/saml2/idp/metadata.php'] = array (
   'metadata-set' => 'saml20-idp-remote',
   'entityid' => 'https://login.aaiedu.hr/sso/saml2/idp/metadata.php',
