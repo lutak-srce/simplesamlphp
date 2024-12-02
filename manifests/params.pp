@@ -63,9 +63,9 @@ class simplesamlphp::params {
           $authsources_php_epp       = 'simplesamlphp/authsources.php.epp'
           $config_php_epp            = 'simplesamlphp/config.php_2-3-4.epp'
           $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
-          $fedlabidp                 = 'https://fed-lab.aaiedu.hr/sso/saml2/idp/metadata.php'
-          $session_cookie_secure     = true
-          $support_pkgs              = ['memcached', 'libmemcache0', 'libapache2-mod-auth-memcookie']
+          $fedlabidp                 = 'fed-lab.aaiedu.hr'
+          $session_cookie_secure     = false
+          $support_pkgs              = ['memcached']
         }
         '10' : {
           $apache_reload             = '/usr/sbin/service apache2 reload'
