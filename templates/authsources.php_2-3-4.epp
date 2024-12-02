@@ -1,0 +1,44 @@
+<?php
+
+$config = [
+
+    // Authentication source which handles admin authentication.
+    'admin' => [
+        'core:AdminPassword',
+    ],
+
+    // Authentication sources for AAI@EduHr SAML 2.0 IdPs.
+    'default-sp' => [
+        'saml:SP',
+        // The entity ID of this SP.
+        'entityID' => 'https://' . $_SERVER['HTTP_HOST'] . '/simplesaml/module.php/saml/sp/metadata.php/default-sp',
+        // The entity ID of the IdP this SP should contact.
+        'idp' => 'https://login.aaiedu.hr/sso/saml2/idp/metadata.php',
+    ],
+
+    'proxy-sp' => [
+        'saml:SP',
+        // The entity ID of this SP.
+        'entityID' => 'https://' . $_SERVER['HTTP_HOST'] . '/simplesaml/module.php/saml/sp/metadata.php/proxy-sp',
+        // The entity ID of the IdP this SP should contact.
+        'idp' => 'https://login.aaiedu.hr/proxy/saml2/idp/metadata.php',
+    ],
+
+    'mfa-sp' => [
+        'saml:SP',
+        // The entity ID of this SP.
+        'entityID' => 'https://' . $_SERVER['HTTP_HOST'] . '/simplesaml/module.php/saml/sp/metadata.php/mfa-sp',
+        // The entity ID of the IdP this SP should contact.
+        'idp' => 'https://login.aaiedu.hr/mfa/saml2/idp/metadata.php',
+    ],
+
+    'fedlab-sp' => [
+        'saml:SP',
+        // The entity ID of this SP.
+        'entityID' => 'https://' . $_SERVER['HTTP_HOST'] . '/simplesaml/module.php/saml/sp/metadata.php/fedlab-sp',
+        // The entity ID of the IdP this SP should contact.
+        'idp' => 'https://fed-lab.aaiedu.hr/sso/saml2/idp/metadata.php',
+    ],
+];
+
+$config['default'] = &$config['default-sp'];

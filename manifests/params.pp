@@ -60,7 +60,7 @@ class simplesamlphp::params {
       case $::operatingsystemmajrelease {
         '12' : {
           $apache_reload             = '/usr/sbin/service apache2 reload'
-          $authsources_php_epp       = 'simplesamlphp/authsources.php.epp'
+          $authsources_php_epp       = 'simplesamlphp/authsources.php_2-3-4.epp'
           $config_php_epp            = 'simplesamlphp/config.php_2-3-4.epp'
           $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
           $fedlabidp                 = 'fed-lab.aaiedu.hr'
