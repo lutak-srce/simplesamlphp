@@ -64,7 +64,7 @@ class simplesamlphp::params {
           $config_php_epp            = 'simplesamlphp/config.php_2-3-4.epp'
           $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
           $fedlabidp                 = 'fed-lab.aaiedu.hr'
-          $session_cookie_secure     = false
+          $session_cookie_secure     = true
           $support_pkgs              = ['memcached']
         }
         '11' : {
@@ -73,7 +73,7 @@ class simplesamlphp::params {
           $config_php_epp            = 'simplesamlphp/config.php_1-19-9.epp'
           $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
           $fedlabidp                 = 'fed-lab.aaiedu.hr'
-          $session_cookie_secure     = false
+          $session_cookie_secure     = true
           $support_pkgs              = ['memcached']
         }
         '10' : {
