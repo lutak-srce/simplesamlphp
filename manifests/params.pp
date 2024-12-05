@@ -67,6 +67,15 @@ class simplesamlphp::params {
           $session_cookie_secure     = false
           $support_pkgs              = ['memcached']
         }
+        '11' : {
+          $apache_reload             = '/usr/sbin/service apache2 reload'
+          $authsources_php_epp       = 'simplesamlphp/authsources.php_1-19-9.epp'
+          $config_php_epp            = 'simplesamlphp/config.php_1-19-9.epp'
+          $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
+          $fedlabidp                 = 'fed-lab.aaiedu.hr'
+          $session_cookie_secure     = false
+          $support_pkgs              = ['memcached']
+        }
         '10' : {
           $apache_reload             = '/usr/sbin/service apache2 reload'
           $authsources_php_epp       = 'simplesamlphp/authsources.php_1-18-8.epp'
