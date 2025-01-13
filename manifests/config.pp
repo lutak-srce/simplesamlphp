@@ -48,7 +48,7 @@ class simplesamlphp::config (
       mode    => $simplesamlphp::file_mode,
     }
 
-    case $::osfamily {
+    case $facts['os']['family'] {
       'RedHat'  : {
         file { $simplesamlphp::authmemcookie_conf_file:
           ensure  => file,
@@ -64,7 +64,7 @@ class simplesamlphp::config (
           }
       }
       'Debian' : {
-        if versioncmp($facts['operatingsystemmajrelease'], '10') <= 0 {
+        if versioncmp($facts['os']['release']['major'], '10') <= 0 {
           file { $simplesamlphp::authmemcookie_conf_file:
             ensure => link,
             target => $simplesamlphp::authmemcookie_conf_epp,

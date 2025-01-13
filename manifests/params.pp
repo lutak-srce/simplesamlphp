@@ -34,7 +34,7 @@ class simplesamlphp::params {
   $authmemcookie_php_epp       = 'simplesamlphp/authmemcookie.php.epp'
   $authproccustom              = undef
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat' : {
       $support_pkgs              = ['memcached', 'mod_auth_memcookie', 'php-pecl-memcache']
       $file_group                = 'apache'
@@ -46,7 +46,7 @@ class simplesamlphp::params {
       $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
       $fedlabidp                 = 'fed-lab.aaiedu.hr'
 
-      case $::operatingsystemmajrelease {
+      case $facts['os']['release']['major'] {
         '7'     : { $apache_reload = '/usr/bin/systemctl reload httpd' }
         default : { $apache_reload = '/sbin/service httpd reload' }
       }
@@ -57,7 +57,7 @@ class simplesamlphp::params {
       $authmemcookie_conf_file = '/etc/apache2/mods-enabled/auth_memcookie.load'
       $authmemcookie_conf_epp  = '/etc/apache2/mods-available/auth_memcookie.load'
 
-      case $::operatingsystemmajrelease {
+      case $facts['os']['release']['major'] {
         '12' : {
           $apache_reload             = '/usr/sbin/service apache2 reload'
           $authsources_php_epp       = 'simplesamlphp/authsources.php_2-3-4.epp'
