@@ -58,6 +58,15 @@ class simplesamlphp::params {
       $authmemcookie_conf_epp  = '/etc/apache2/mods-available/auth_memcookie.load'
 
       case $facts['os']['release']['major'] {
+        '13' : {
+          $apache_reload             = '/usr/sbin/service apache2 reload'
+          $authsources_php_epp       = 'simplesamlphp/authsources.php_2-3-4.epp'
+          $config_php_epp            = 'simplesamlphp/config.php_2-3-4.epp'
+          $saml20_idp_remote_php_src = 'puppet:///modules/simplesamlphp/saml20-idp-remote.php'
+          $fedlabidp                 = 'fed-lab.aaiedu.hr'
+          $session_cookie_secure     = true
+          $support_pkgs              = ['memcached']
+        }
         '12' : {
           $apache_reload             = '/usr/sbin/service apache2 reload'
           $authsources_php_epp       = 'simplesamlphp/authsources.php_2-3-4.epp'
