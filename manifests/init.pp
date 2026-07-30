@@ -10,7 +10,6 @@
 #
 # Sample Usage:
 #
-
 class simplesamlphp (
   Boolean          $authmemcookie               = $simplesamlphp::params::authmemcookie,
   Boolean          $use_server_port             = $simplesamlphp::params::use_server_port,
@@ -50,6 +49,7 @@ class simplesamlphp (
   String           $apache_reload               = $simplesamlphp::params::apache_reload,
   Optional[String] $authproccustom              = $simplesamlphp::params::authproccustom,
   Boolean          $session_cookie_secure       = $simplesamlphp::params::session_cookie_secure,
+  String           $cachedir                    = $simplesamlphp::params::cachedir,
 ) inherits ::simplesamlphp::params {
 
     class{'simplesamlphp::package': }
