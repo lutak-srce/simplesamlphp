@@ -50,7 +50,6 @@ class simplesamlphp (
   Optional[String] $authproccustom              = $simplesamlphp::params::authproccustom,
   Boolean          $session_cookie_secure       = $simplesamlphp::params::session_cookie_secure,
   String           $cachedir                    = $simplesamlphp::params::cachedir,
-  Optional[String] $loggingdir                  = $simplesamlphp::params::loggingdir,
 ) inherits ::simplesamlphp::params {
 
     class{'simplesamlphp::package': }
