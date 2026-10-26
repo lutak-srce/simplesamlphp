@@ -3,6 +3,23 @@ class simplesamlphp::config (
   $saml20_idp_remote_php_src = $simplesamlphp::saml20_idp_remote_php_src,
 ){
 
+  if $simplesamlphp::loggingdir != undef {
+    if $simplesamlphp::loggingdir =~ /^\// {
+      $loggingdir_path = $simplesamlphp::loggingdir
+    } else {
+      $simplesamlphp_root = regsubst($simplesamlphp::config_php_file, '/[^/]+/[^/]+$', '')
+      $loggingdir_path = "${simplesamlphp_root}/${simplesamlphp::loggingdir}"
+    }
+
+    file { $loggingdir_path:
+      ensure => directory,
+      owner  => $simplesamlphp::file_owner,
+      group  => $simplesamlphp::file_group,
+      mode   => '0770',
+      before => File[$simplesamlphp::config_php_file],
+    }
+  }
+
   if $simplesamlphp::authsources_php_custom_file == true {
     file { $simplesamlphp::authsources_php_file:
       ensure => file,

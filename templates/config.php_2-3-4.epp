@@ -72,7 +72,7 @@ $config = [
      * root directory.
      */
     'cachedir' => '<%= $simplesamlphp::cachedir %>',
-    //'loggingdir' => '/var/log/',
+    'loggingdir' => <%= if $simplesamlphp::loggingdir == undef { 'null' } else { "'${simplesamlphp::loggingdir}'" } %>,
     //'datadir' => '/var/data/',
     //'tempdir' => '/tmp/simplesamlphp',
 

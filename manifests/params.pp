@@ -34,6 +34,7 @@ class simplesamlphp::params {
   $authmemcookie_php_epp       = 'simplesamlphp/authmemcookie.php.epp'
   $authproccustom              = undef
   $cachedir                    = 'cache/simplesamlphp'
+  $loggingdir                  = undef
 
   case $facts['os']['family'] {
     'RedHat' : {
